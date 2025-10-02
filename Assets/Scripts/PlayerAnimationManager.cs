@@ -7,14 +7,16 @@ public class PlayerAnimatorController : MonoBehaviour
 {
     private Animator animator;
     private PlayerMovement movement;
-     private Rigidbody rb;
+    private Rigidbody rb;
+    private AudioSource audioSource;
 
 
     public void Start()
     {
         animator = GetComponent<Animator>();
         movement = GetComponent<PlayerMovement>();
-         rb = GetComponent<Rigidbody>();
+        audioSource = GetComponent<AudioSource>();
+        rb = GetComponent<Rigidbody>();
     }
 
 
@@ -26,6 +28,12 @@ public class PlayerAnimatorController : MonoBehaviour
         if (Input.GetButtonUp("Fire1"))
         {
             animator.SetTrigger("doRoll");
+        }
+
+        if (Input.GetButtonUp("Fire2"))
+        {
+            animator.SetTrigger("doPunch");
+            audioSource.Play();
         }
     }
 }
